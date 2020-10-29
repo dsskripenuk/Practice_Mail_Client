@@ -5,8 +5,45 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Practice_Mail_Client"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="281.828" Width="380.493">
     <Grid>
-        
+        <DockPanel>
+            <GroupBox>
+                <DockPanel LastChildFill="False">
+                    <DockPanel DockPanel.Dock="Top" Margin="5">
+                        <Label>Login:</Label>
+                        <TextBox Margin="5" Width="280" Name="loginTb" HorizontalAlignment="Right"></TextBox>
+                    </DockPanel>
+
+                    <DockPanel DockPanel.Dock="Top" Margin="5">
+                        <Label>Password:</Label>
+                        <PasswordBox Margin="5" Width="272" Name="passwordPB" HorizontalAlignment="Right"></PasswordBox>
+                    </DockPanel>
+
+                    <DockPanel DockPanel.Dock="Top" Margin="5">
+                        <ComboBox Name="serviceCB" Margin="5" SelectionChanged="ComboBox_SelectionChanged">
+                            <ComboBoxItem>
+                                gmail
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                Yahoo
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                Yandex
+                            </ComboBoxItem>
+                        </ComboBox>
+                    </DockPanel>
+
+                    <DockPanel DockPanel.Dock="Top" Margin="5">
+                        <Button Margin="5" Click="Button_Click_1">Sign in</Button>
+                    </DockPanel>
+
+                    <DockPanel DockPanel.Dock="Top" Margin="5">
+                        <Button Margin="5" Click="Button_Click">Sign up</Button>
+                    </DockPanel>
+
+                </DockPanel>
+            </GroupBox>
+        </DockPanel>
     </Grid>
 </Window>
