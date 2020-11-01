@@ -32,9 +32,9 @@ namespace Practice_Mail_Client
                 SmtpClient client = new SmtpClient();
                 client.Connect(server);
 
-                //Login log = new Login(loginTb.Text, passwordPB.Password, service);
-                //log.Show();
-                //this.Close();
+                Login log = new Login(loginTb.Text, passwordPB.Password, service);
+                log.Show();
+                this.Close();
             }
             catch
             {
