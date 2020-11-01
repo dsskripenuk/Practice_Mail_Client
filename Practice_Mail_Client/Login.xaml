@@ -1,0 +1,49 @@
+﻿<Window x:Class="Practice_Mail_Client.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Practice_Mail_Client"
+        mc:Ignorable="d"
+        Title="Login" Height="541.5" Width="800">
+    <Grid>
+        <DockPanel>
+            <GroupBox>
+                <DockPanel LastChildFill="False">
+
+                    <DockPanel DockPanel.Dock="Top" Margin="5">
+                        <Label>To:</Label>
+                        <TextBox Margin="5" Name="toTb"></TextBox>
+                    </DockPanel>
+
+                    <DockPanel DockPanel.Dock="Top" Margin="5">
+                        <Label>Message:</Label>
+                        <TextBox Margin="5" Name="messageTb"></TextBox>
+                    </DockPanel>
+
+                    <DockPanel DockPanel.Dock="Top" Margin="5">
+                        <Label>TextBody:</Label>
+                        <TextBox Margin="5" Name="bodyTb"></TextBox>
+                    </DockPanel>
+
+                    <DockPanel DockPanel.Dock="Top" Margin="5,5,10,5">
+                        <Button Margin="5" Width="146" HorizontalAlignment="Right" Click="Button_Click_1">Show my mails</Button>
+                    </DockPanel>
+
+                    <DockPanel DockPanel.Dock="Top" Margin="5,5,10,5">
+                        <ListBox Height="251" Name="listBox" Width="756"></ListBox>
+                    </DockPanel>
+
+                    <DockPanel DockPanel.Dock="Top" Margin="5">
+                        <Button Margin="5" Click="Button_Click">Attach a file</Button>
+                    </DockPanel>
+
+                    <DockPanel DockPanel.Dock="Top" Margin="5">
+                        <Button Margin="5" Name="sendBTN" Width="103" HorizontalAlignment="Right" Click="openFileBtn_Click">Send</Button>
+                    </DockPanel>
+                </DockPanel>
+            </GroupBox>
+        </DockPanel>
+
+    </Grid>
+</Window>
