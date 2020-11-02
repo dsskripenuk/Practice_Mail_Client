@@ -7,7 +7,11 @@
         mc:Ignorable="d"
         Title="Reply" Height="526.143" Width="800">
     <Grid>
-        <DockPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <DockPanel Grid.ColumnSpan="2">
             <GroupBox>
                 <DockPanel LastChildFill="False">
 
@@ -32,8 +36,6 @@
                     <DockPanel DockPanel.Dock="Top" Margin="5" Height="42" HorizontalAlignment="Left">
                         <Button Margin="5" Width="107" HorizontalAlignment="Left" Click="Button_Click_3">Reply</Button>
                     </DockPanel>
-
-
 
                 </DockPanel>
             </GroupBox>
