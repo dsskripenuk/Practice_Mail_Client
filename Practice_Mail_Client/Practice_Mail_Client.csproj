@@ -43,6 +43,12 @@
     <Reference Include="EASendMail, Version=7.7.0.5, Culture=neutral, PublicKeyToken=88adb80ecd66540b, processorArchitecture=MSIL">
       <HintPath>..\packages\EASendMail.7.7.0.5\lib\net461\EASendMail.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=1.2.7.1979, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.2.7\lib\net45\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -50,7 +56,10 @@
       <HintPath>..\packages\MaterialDesignThemes.3.2.0\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -73,12 +82,14 @@
     <Compile Include="Info.xaml.cs">
       <DependentUpon>Info.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model1.cs" />
     <Compile Include="Reply.xaml.cs">
       <DependentUpon>Reply.xaml</DependentUpon>
     </Compile>
     <Compile Include="Show.xaml.cs">
       <DependentUpon>Show.xaml</DependentUpon>
     </Compile>
+    <Compile Include="User.cs" />
     <Page Include="Info.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
