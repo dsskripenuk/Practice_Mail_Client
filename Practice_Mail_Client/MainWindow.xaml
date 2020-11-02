@@ -20,12 +20,12 @@
                 <DockPanel LastChildFill="False">
                     <DockPanel DockPanel.Dock="Top" Margin="5">
                         <Label>Login:</Label>
-                        <TextBox Margin="5" Width="280" Name="loginTb" HorizontalAlignment="Right"></TextBox>
+                        <TextBox Margin="5" Width="263" Name="loginTb" HorizontalAlignment="Right"></TextBox>
                     </DockPanel>
 
                     <DockPanel DockPanel.Dock="Top" Margin="5">
                         <Label>Password:</Label>
-                        <PasswordBox Margin="5" Width="272" Name="passwordPB" HorizontalAlignment="Right"></PasswordBox>
+                        <PasswordBox Margin="5" Width="263" Name="passwordPB" HorizontalAlignment="Right"></PasswordBox>
                     </DockPanel>
 
                     <DockPanel DockPanel.Dock="Top" Margin="5">
