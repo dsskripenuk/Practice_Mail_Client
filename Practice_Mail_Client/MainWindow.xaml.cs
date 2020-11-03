@@ -35,6 +35,7 @@ namespace Practice_Mail_Client
                 WriteMail log = new WriteMail(loginTb.Text, passwordPB.Password, service);
                 log.Show();
                 this.Close();
+
             }
             catch
             {
