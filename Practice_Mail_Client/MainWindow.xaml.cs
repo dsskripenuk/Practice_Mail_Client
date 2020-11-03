@@ -19,6 +19,7 @@ namespace Practice_Mail_Client
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+
             try
             {
                 EASendMail.SmtpServer server = new EASendMail.SmtpServer(service)
