@@ -1,15 +1,19 @@
 ﻿using EASendMail;
 using System.Windows;
 using System.Diagnostics;
+using Business_Logic_Layer;
 
 namespace Practice_Mail_Client
 {
     public partial class MainWindow : Window
     {
+        private IBLLClass _bll = null;
         string service = null;
         public MainWindow()
         {
             InitializeComponent();
+
+            _bll = new BLLClass();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -19,7 +23,6 @@ namespace Practice_Mail_Client
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
             try
             {
                 EASendMail.SmtpServer server = new EASendMail.SmtpServer(service)
@@ -33,15 +36,21 @@ namespace Practice_Mail_Client
                 SmtpClient client = new SmtpClient();
                 client.Connect(server);
 
+                _bll.AddUser(new UserDTO()
+                {
+                    Login = loginTb.Text,
+                    Password = passwordPB.Password,
+                });
+
                 WriteMail log = new WriteMail(loginTb.Text, passwordPB.Password, service);
                 log.Show();
                 this.Close();
-
             }
             catch
             {
                 System.Windows.MessageBox.Show("Incorrect address or password!");
             }
+            
         }
 
         private void ComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
