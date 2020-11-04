@@ -50,7 +50,6 @@ namespace Practice_Mail_Client
             {
                 System.Windows.MessageBox.Show("Incorrect address or password!");
             }
-            
         }
 
         private void ComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)

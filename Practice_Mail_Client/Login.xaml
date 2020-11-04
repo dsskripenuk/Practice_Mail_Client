@@ -1,9 +1,10 @@
-﻿<Window x:Class="Practice_Mail_Client.Login"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Practice_Mail_Client"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="Practice_Mail_Client.Login"
         mc:Ignorable="d"
         Title="Login" Height="649.369" Width="800">
     <Grid>
@@ -12,34 +13,38 @@
                 <DockPanel LastChildFill="False">
 
                     <DockPanel DockPanel.Dock="Top" Margin="5">
-                        <Label>To:</Label>
-                        <TextBox Margin="5" Name="toTb"></TextBox>
+                        <Label Content="To:"/>
+                        <TextBox Margin="5" x:Name="toTb"/>
                     </DockPanel>
 
                     <DockPanel DockPanel.Dock="Top" Margin="5">
-                        <Label>Message:</Label>
-                        <TextBox Margin="5" Name="messageTb"></TextBox>
+                        <Label Content="Message:"/>
+                        <TextBox Margin="5" x:Name="messageTb"/>
                     </DockPanel>
 
                     <DockPanel DockPanel.Dock="Top" Margin="5">
-                        <Label>TextBody:</Label>
-                        <TextBox Margin="5" Name="bodyTb"></TextBox>
+                        <Label Content="TextBody:"/>
+                        <TextBox Margin="5" x:Name="bodyTb"/>
                     </DockPanel>
 
                     <DockPanel DockPanel.Dock="Top" Margin="5,5,10,5">
-                        <Button Margin="5" Width="146" HorizontalAlignment="Right" Click="Button_Click_1">Show my mails</Button>
+                        <Button Margin="5" Width="45" Click="Button_Click_2" Content="Tx"/>
+                        <Button Margin="5" Width="45" Click="Button_Click_4" Content="̶S̶"/>
+                        <Button Margin="5" Width="45" Click="Button_Click_5" Content="U̲"/>
+                        <Button Margin="5" Width="45" Click="Button_Click_3" Content="/"/>
+                        <Button Margin="5" Width="45" FontWeight="Bold" HorizontalAlignment="Left" Content="B" Click="Button_Click_6"/>
                     </DockPanel>
 
                     <DockPanel DockPanel.Dock="Top" Margin="5,5,10,5">
-                        <ListBox Height="251" Name="listBox" Width="756"></ListBox>
+                        <ListBox Height="251" x:Name="listBox" Width="756"/>
                     </DockPanel>
 
                     <DockPanel DockPanel.Dock="Top" Margin="5">
-                        <Button Margin="5" Click="Button_Click">Attach a file</Button>
+                        <Button Margin="5" Click="Button_Click" Content="Attach a file"/>
                     </DockPanel>
 
                     <DockPanel DockPanel.Dock="Top" Margin="5">
-                        <Button Margin="5" Name="sendBTN" Width="103" HorizontalAlignment="Right" Click="openFileBtn_Click">Send</Button>
+                        <Button Margin="5" x:Name="sendBTN" Width="103" HorizontalAlignment="Right" Click="openFileBtn_Click" Content="Send"/>
                     </DockPanel>
                 </DockPanel>
             </GroupBox>

@@ -25,7 +25,7 @@
                         <StackPanel DockPanel.Dock="Top" Margin="5" Height="685" Width="250" HorizontalAlignment="Left">
                             <Button Margin="5, 5, 5, 20" VerticalAlignment="Top" Click="Button_Click">Compose</Button>
                             <Button Margin="5" VerticalAlignment="Top" Background="#FFB6B6B8" Foreground="#DD000000">Inbox</Button>
-                            <Button Margin="5" VerticalAlignment="Top" Background="#FFB6B6B8" Foreground="#DD000000">Starred</Button>
+                            <Button Margin="5" VerticalAlignment="Top" Background="#FFB6B6B8" Foreground="#DD000000" Click="Button_Click_4">Starred</Button>
                             <Button Margin="5" VerticalAlignment="Top" Background="#FFB6B6B8" Foreground="#DD000000">Snoozed</Button>
                             <Button Margin="5" VerticalAlignment="Top" Background="#FFB6B6B8" Foreground="#DD000000">Sent</Button>
                             <Button Margin="5" VerticalAlignment="Top" Background="#FFB6B6B8" Foreground="#DD000000">Drafts</Button>
@@ -42,45 +42,12 @@
                             <Button Margin="5" VerticalAlignment="Top" Click="Button_Click_3">Open</Button>
                         </StackPanel>
 
-
                         <ListBox Name="listBox" Margin="5,-681,5,0" RenderTransformOrigin="0.5,0.5" Width="982" HorizontalAlignment="Right" VerticalAlignment="Top" Height="671">
 
                         </ListBox>
                     </DockPanel>
-
                 </DockPanel>
             </GroupBox>
         </DockPanel>
-
     </Grid>
-
-    <!--<Grid>
-        <DockPanel>
-            <GroupBox>
-                <DockPanel LastChildFill="False">
-                    <DockPanel DockPanel.Dock="Top" Margin="5" Height="35">
-                        <TextBox Margin="5" Name="Search" Width="899"></TextBox>
-                        <ComboBox Margin="5" Width="353" HorizontalAlignment="Right"></ComboBox>
-                    </DockPanel>
-
-                    <DockPanel DockPanel.Dock="Top" Margin="5">
-                        <Label Margin="5">Index:</Label>
-                        <TextBox Margin="5" Name="indexTB"></TextBox>
-                    </DockPanel>
-
-                    <DockPanel DockPanel.Dock="Top" Margin="5" Width="760">
-                        <Button Width="180" Margin="5" Click="Button_Click">Delete</Button>
-                        <Button Width="180" Margin="5" Click="Button_Click_2">Mark as read (unread)</Button>
-                        <Button Width="180" Margin="5" Click="Button_Click_4">Move</Button>
-                        <Button Width="180" Margin="5" Click="Button_Click_1">Open mail</Button>
-                    </DockPanel>
-
-                    <DockPanel DockPanel.Dock="Top" Margin="5" Height="42" HorizontalAlignment="Left">
-                        <Button Margin="5" Width="63" HorizontalAlignment="Left" Click="Button_Click_3">Back</Button>
-                    </DockPanel>
-                </DockPanel>
-            </GroupBox>
-        </DockPanel>
-    </Grid>-->
-
 </Window>

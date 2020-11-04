@@ -1,6 +1,10 @@
 ﻿using EASendMail;
 using System;
 using System.Windows;
+using System.Drawing;
+using System.Windows.Controls;
+using System.Windows.Forms;
+using MaterialDesignThemes.Wpf;
 
 namespace Practice_Mail_Client
 {
@@ -72,6 +76,31 @@ namespace Practice_Mail_Client
             Show show = new Show(login, password, service);
             show.Show();
             this.Close();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            messageTb.FontStyle = FontStyles.Normal;
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            messageTb.FontStyle = FontStyles.Italic;
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            messageTb.TextDecorations = TextDecorations.Underline;
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            messageTb.TextDecorations = TextDecorations.Strikethrough;
+        }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            messageTb.FontWeight = FontWeights.Bold;
         }
     }
 }
