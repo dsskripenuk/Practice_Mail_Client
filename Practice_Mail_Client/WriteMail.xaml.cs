@@ -22,6 +22,7 @@ namespace Practice_Mail_Client
         string service = null;
         string SMTPservice = null;
 
+
         public WriteMail(string login_, string password_, string service_)
         {
             InitializeComponent();
@@ -187,8 +188,6 @@ namespace Practice_Mail_Client
             try
             {
                 client.Connect(server);
-
-                
 
                 MailInfo mail = GetMailByIndex(Convert.ToInt32(indexTB.Text));
 
