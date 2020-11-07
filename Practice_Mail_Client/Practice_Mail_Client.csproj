@@ -84,9 +84,6 @@
     <Compile Include="Reply.xaml.cs">
       <DependentUpon>Reply.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Show.xaml.cs">
-      <DependentUpon>Show.xaml</DependentUpon>
-    </Compile>
     <Compile Include="WriteMail.xaml.cs">
       <DependentUpon>WriteMail.xaml</DependentUpon>
     </Compile>
@@ -114,10 +111,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Reply.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Show.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

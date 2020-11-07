@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using MaterialDesignThemes.Wpf;
+using EAGetMail;
 
 namespace Practice_Mail_Client
 {
@@ -13,6 +14,7 @@ namespace Practice_Mail_Client
         string login = null;
         string password = null;
         string service = null;
+        MailClient client = new MailClient("TryIt");
 
         public Login(string login_, string password_, string service_)
         {
@@ -45,9 +47,11 @@ namespace Practice_Mail_Client
             foreach (var item in listBox.Items)
                 message.AddAttachment(item.ToString());
 
+
             SmtpClient client = new SmtpClient();
             client.Connect(server);
 
+            
             try
             {
                 System.Windows.MessageBox.Show("Try to send mail...");
@@ -69,13 +73,6 @@ namespace Practice_Mail_Client
             if (openFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 foreach (var item in openFile.FileNames)
                     listBox.Items.Add(item);
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            Show show = new Show(login, password, service);
-            show.Show();
-            this.Close();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)

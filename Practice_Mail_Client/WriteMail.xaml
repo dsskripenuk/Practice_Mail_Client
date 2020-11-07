@@ -15,7 +15,6 @@
         <DockPanel Grid.ColumnSpan="2">
             <GroupBox>
                 <DockPanel LastChildFill="False">
-
                     <DockPanel DockPanel.Dock="Top" Margin="5" Height="35">
                         <TextBox Margin="5" Name="Search" Width="899"></TextBox>
                         <ComboBox Name="cbAllMails" Margin="5" Width="353" HorizontalAlignment="Right" SelectionChanged="CbAllMails_SelectionChanged"></ComboBox>
@@ -27,18 +26,18 @@
                             <Button Margin="5" VerticalAlignment="Top" Background="#FFB6B6B8" Foreground="#DD000000" Click="Button_Click_4">Inbox</Button>
                             <Button Margin="5" VerticalAlignment="Top" Background="#FFB6B6B8" Foreground="#DD000000" Click="Button_Click_4">Starred</Button>
                             <Button Margin="5" VerticalAlignment="Top" Background="#FFB6B6B8" Foreground="#DD000000">Snoozed</Button>
-                            <Button Margin="5" VerticalAlignment="Top" Background="#FFB6B6B8" Foreground="#DD000000">Sent</Button>
-                            <Button Margin="5" VerticalAlignment="Top" Background="#FFB6B6B8" Foreground="#DD000000">Drafts</Button>
+                            <Button Margin="5" VerticalAlignment="Top" Background="#FFB6B6B8" Foreground="#DD000000" Click="Button_Click_5">Sent</Button>
+                            <Button Margin="5" VerticalAlignment="Top" Background="#FFB6B6B8" Foreground="#DD000000" Click="Button_Click_7">Drafts</Button>
                             <DockPanel Margin="5, 20, 5, 5">
                                 <Label Margin="5">Index:</Label>
                                 <TextBox Margin="5" Name="indexTB"></TextBox>
                             </DockPanel>
 
-                            <Button Margin="5" VerticalAlignment="Top">Starred</Button>
+                            <Button Margin="5" VerticalAlignment="Top" Click="Button_Click_6">Starred</Button>
                             <Button Margin="5" VerticalAlignment="Top">Select</Button>
                             <Button Margin="5" VerticalAlignment="Top" Click="Button_Click_1">Delete</Button>
                             <Button Margin="5" VerticalAlignment="Top" Click="Button_Click_2">Mark as read/unread</Button>
-                            <Button Margin="5" VerticalAlignment="Top">Snooze</Button>
+                            <Button Margin="5" VerticalAlignment="Top" Click="Button_Click_8">Snooze</Button>
                             <Button Margin="5" VerticalAlignment="Top" Click="Button_Click_3">Open</Button>
                         </StackPanel>
 

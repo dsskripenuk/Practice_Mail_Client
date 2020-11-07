@@ -117,8 +117,6 @@ namespace Practice_Mail_Client
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
-
             try
             {
                 client.Connect(server);
@@ -166,7 +164,25 @@ namespace Practice_Mail_Client
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
+            //try
+            //{
+            //    client.Connect(server);
 
+            //    foreach (var folder in client.Imap4Folders)
+            //    {
+            //        foreach (var subfolder in folder.SubFolders)
+            //        {
+            //            if (subfolder.Name.Equals("Starred") || subfolder.Name.Equals("Отмеченные") || subfolder.Name.Equals("Відміченні"))
+            //            {
+            //                client.SelectFolder(subfolder);
+
+            //                listBox.Items.Clear();
+            //                listBox.Items.Add()
+            //            }
+            //        }
+            //    }
+            //}
+            //catch(Exception ex) { MessageBox.Show(ex.Message); }
         }
 
         private void CbAllMails_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -180,6 +196,62 @@ namespace Practice_Mail_Client
                     mw.loginTb.Text = cbAllMails.SelectedItem.ToString();
                     this.Close();
                 }
+            }
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                foreach (var folder in client.Imap4Folders)
+                {
+                    foreach (var subfolder in folder.SubFolders)
+                    {
+                        if (subfolder.Name.Equals("Starred") || subfolder.Name.Equals("Отмеченные") || subfolder.Name.Equals("Відміченні"))
+                        {
+                            client.Move(GetMailByIndex(Convert.ToInt32(indexTB.Text)), subfolder);
+                            MessageBox.Show("Moving to starred", "Message was moved to starred!");
+                            break;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void Button_Click_7(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_8(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                foreach (var folder in client.Imap4Folders)
+                {
+                    foreach (var subfolder in folder.SubFolders)
+                    {
+                        if (subfolder.Name.Equals("Scheduled") || subfolder.Name.Equals("Отложенные") || subfolder.Name.Equals("Відложенні"))
+                        {
+                            client.Move(GetMailByIndex(Convert.ToInt32(indexTB.Text)), subfolder);
+                            MessageBox.Show("Moving to scheduled", "Message was moved to scheduled!");
+                            break;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }
