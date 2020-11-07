@@ -8,7 +8,7 @@ namespace Data_Access_Layer
     public partial class Model1 : DbContext
     {
         public Model1()
-            : base("name=Model")
+            : base("name=Model1")
         {
         }
 
@@ -16,7 +16,6 @@ namespace Data_Access_Layer
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
         }
     }
 }
