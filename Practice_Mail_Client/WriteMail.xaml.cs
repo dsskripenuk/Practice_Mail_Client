@@ -22,6 +22,9 @@ namespace Practice_Mail_Client
         static string service = null;
         string SMTPservice = null;
 
+        MailServer server;
+
+        MailClient client = new MailClient("TryIt");
 
         public WriteMail(string login_, string password_, string service_)
         {
@@ -38,20 +41,18 @@ namespace Practice_Mail_Client
             else if (service_ == "smtp.yandex.ru")
                 service = "imap.yandex.ru";
 
+            server = new MailServer(
+            service,
+            login,
+            password,
+            EAGetMail.ServerProtocol.Imap4)
+            {
+                SSLConnection = true,
+                Port = 993
+            };
+
             ShowMails();
         }
-
-        MailServer server = new MailServer(
-        service,
-        login,
-        password,
-        EAGetMail.ServerProtocol.Imap4)
-        {
-            SSLConnection = true,
-            Port = 993
-        };
-
-        MailClient client = new MailClient("TryIt");
 
         private void ShowMails()
         {
