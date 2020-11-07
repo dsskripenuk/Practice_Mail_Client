@@ -1,4 +1,5 @@
-﻿using EAGetMail;
+﻿using Business_Logic_Layer;
+using EAGetMail;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,11 +22,17 @@ namespace Practice_Mail_Client
         string password = null;
         string service = null;
         string SMTPservice = null;
-
+        private IBLLClass _bll = null;
 
         public WriteMail(string login_, string password_, string service_)
         {
             InitializeComponent();
+            _bll = new BLLClass();
+
+            foreach(var users in _bll.GetAllUsers())
+            {                
+                cbAllMails.Items.Add(users.Login);
+            }
 
             login = login_;
             password = password_;

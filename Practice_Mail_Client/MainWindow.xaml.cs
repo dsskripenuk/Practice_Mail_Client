@@ -9,6 +9,8 @@ namespace Practice_Mail_Client
     {
         private IBLLClass _bll = null;
         string service = null;
+        bool check;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -36,11 +38,25 @@ namespace Practice_Mail_Client
                 SmtpClient client = new SmtpClient();
                 client.Connect(server);
 
-                _bll.AddUser(new UserDTO()
+                var user = new UserDTO()
                 {
                     Login = loginTb.Text,
                     Password = passwordPB.Password,
-                });
+                };
+
+
+                foreach (var users in _bll.GetAllUsers())
+                {
+                    if(users.Login == user.Login)
+                    {
+                        check = true;
+                    }
+                }
+
+                if(check != true)
+                {
+                    _bll.AddUser(user); 
+                }
 
                 WriteMail log = new WriteMail(loginTb.Text, passwordPB.Password, service);
                 log.Show();
