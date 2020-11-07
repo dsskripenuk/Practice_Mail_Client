@@ -17,9 +17,9 @@ namespace Practice_Mail_Client
 {
     public partial class WriteMail : Window
     {
-        string login = null;
-        string password = null;
-        string service = null;
+        static string login = null;
+        static string password = null;
+        static string service = null;
         string SMTPservice = null;
 
 
@@ -41,20 +41,20 @@ namespace Practice_Mail_Client
             ShowMails();
         }
 
+        MailServer server = new MailServer(
+        service,
+        login,
+        password,
+        EAGetMail.ServerProtocol.Imap4)
+        {
+            SSLConnection = true,
+            Port = 993
+        };
+
+        MailClient client = new MailClient("TryIt");
+
         private void ShowMails()
         {
-            MailServer server = new MailServer(
-                 "imap.gmail.com",
-                 login,
-                 password,
-                 EAGetMail.ServerProtocol.Imap4)
-            {
-                SSLConnection = true,
-                Port = 993
-            };
-
-            MailClient client = new MailClient("TryIt");
-
             try
             {
                 client.Connect(server);
@@ -76,17 +76,6 @@ namespace Practice_Mail_Client
 
         private MailInfo GetMailByIndex(int index)
         {
-            MailServer server = new MailServer(
-               service,
-               login,
-               password,
-               EAGetMail.ServerProtocol.Imap4)
-            {
-                SSLConnection = true,
-                Port = 993
-            };
-
-            MailClient client = new MailClient("TryIt"); // trial version
             MailInfo mail = new MailInfo();
 
             try
@@ -119,17 +108,7 @@ namespace Practice_Mail_Client
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            MailServer server = new MailServer(
-            service,
-            login,
-            password,
-            EAGetMail.ServerProtocol.Imap4)
-            {
-                SSLConnection = true,
-                Port = 993
-            };
 
-            MailClient client = new MailClient("TryIt");
 
             try
             {
@@ -144,18 +123,6 @@ namespace Practice_Mail_Client
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            MailServer server = new MailServer(
-            service,
-            login,
-            password,
-            EAGetMail.ServerProtocol.Imap4)
-            {
-                SSLConnection = true,
-                Port = 993
-            };
-
-            MailClient client = new MailClient("TryIt");
-
             try
             {
                 client.Connect(server);
@@ -173,18 +140,6 @@ namespace Practice_Mail_Client
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            MailServer server = new MailServer(
-               service,
-               login,
-               password,
-               EAGetMail.ServerProtocol.Imap4)
-            {
-                SSLConnection = true,
-                Port = 993
-            };
-
-            MailClient client = new MailClient("TryIt");
-
             try
             {
                 client.Connect(server);
