@@ -53,10 +53,12 @@ namespace Practice_Mail_Client
                     }
                 }
 
+                //adduser
                 if(check != true)
                 {
                     _bll.AddUser(user); 
                 }
+                
 
                 WriteMail log = new WriteMail(loginTb.Text, passwordPB.Password, service);
                 log.Show();
