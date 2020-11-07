@@ -24,16 +24,18 @@ namespace Practice_Mail_Client
         string SMTPservice = null;
         private IBLLClass _bll = null;
 
+        MailClient mailClient = new MailClient("TryIt");
+        MailServer server;
 
-        MailClient client = new MailClient("TryIt");
+
 
         public WriteMail(string login_, string password_, string service_)
         {
             InitializeComponent();
             _bll = new BLLClass();
 
-            foreach(var users in _bll.GetAllUsers())
-            {                
+            foreach (var users in _bll.GetAllUsers())
+            {
                 cbAllMails.Items.Add(users.Login);
             }
 
@@ -65,15 +67,15 @@ namespace Practice_Mail_Client
         {
             try
             {
-                client.Connect(server);
+                mailClient.Connect(server);
 
-                var messages = client.GetMailInfos();
+                var messages = mailClient.GetMailInfos();
 
                 foreach (var m in messages)
                 {
-                    EAGetMail.Mail message = client.GetMail(m);
+                    EAGetMail.Mail message = mailClient.GetMail(m);
 
-                    listBox.Items.Add($"Index: {m.Index}{Environment.NewLine}\n" + $"From: {message.From}" + $"Date: {message.SentDate}");
+                    listBox.Items.Add($"{m.Index}{Environment.NewLine}\n" + $"From: {message.From}" + $"Date: {message.SentDate}");
                 }
             }
             catch (Exception ex)
@@ -88,13 +90,13 @@ namespace Practice_Mail_Client
 
             try
             {
-                client.Connect(server);
+                mailClient.Connect(server);
 
-                var messages = client.GetMailInfos();
+                var messages = mailClient.GetMailInfos();
 
                 foreach (var m in messages)
                 {
-                    EAGetMail.Mail message = client.GetMail(m);
+                    EAGetMail.Mail message = mailClient.GetMail(m);
 
                     if (m.Index == Convert.ToInt32(indexTB.Text))
                         mail = m;
@@ -116,29 +118,60 @@ namespace Practice_Mail_Client
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
-
             try
             {
-                client.Connect(server);
-                client.Delete(GetMailByIndex(Convert.ToInt32(indexTB.Text)));
+                foreach (var folder in mailClient.Imap4Folders)
+                {
+                    foreach (var subfolder in folder.SubFolders)
+                    {
+                        if (subfolder.Name.Equals("Trash") || subfolder.Name.Equals("Кошик") || subfolder.Name.Equals("Корзина"))
+                        {
+                            int index = GetSelectedIndex(listBox.SelectedItem.ToString());
+
+                            mailClient.Move(GetMailByIndex(Convert.ToInt32(indexTB.Text)), subfolder);
+                            MessageBox.Show("Moving to sent", "Message was moved to sent!");
+                            break;
+                        }
+                    }
+                }
             }
-            catch (Exception ex)
-            {
-                System.Windows.MessageBox.Show(ex.Message);
-            }
+            catch (Exception)
+            { }
+
+            //try
+            //{
+            //    int index = GetSelectedIndex(listBox.SelectedItem.ToString());
+            //    MailInfo client = GetMailByIndex(index);
+
+            //    MessageBox.Show(client.ToString());
+
+            //    mailClient.Connect(server);
+            //    mailClient.Delete(client);
+            //}
+            //catch (Exception ex)
+            //{
+            //    System.Windows.MessageBox.Show(ex.Message);
+            //}
+        }
+
+        private int GetSelectedIndex(string selectedMail)
+        {
+            var split = selectedMail.Split('\n', '\r');
+            int index = Convert.ToInt32(split[0]);
+
+            return index;
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             try
             {
-                client.Connect(server);
+                mailClient.Connect(server);
 
                 if (GetMailByIndex(Convert.ToInt32(indexTB.Text)).Read == false)
-                    client.MarkAsRead(GetMailByIndex(Convert.ToInt32(indexTB.Text)), true);
+                    mailClient.MarkAsRead(GetMailByIndex(Convert.ToInt32(indexTB.Text)), true);
                 else
-                    client.MarkAsRead(GetMailByIndex(Convert.ToInt32(indexTB.Text)), false);
+                    mailClient.MarkAsRead(GetMailByIndex(Convert.ToInt32(indexTB.Text)), false);
             }
             catch (Exception ex)
             {
@@ -150,7 +183,7 @@ namespace Practice_Mail_Client
         {
             try
             {
-                client.Connect(server);
+                mailClient.Connect(server);
 
                 MailInfo mail = GetMailByIndex(Convert.ToInt32(indexTB.Text));
 
