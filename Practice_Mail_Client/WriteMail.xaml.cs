@@ -24,6 +24,7 @@ namespace Practice_Mail_Client
         string SMTPservice = null;
         private IBLLClass _bll = null;
 
+        MailServer server;
 
         MailClient client = new MailClient("TryIt");
 
@@ -32,7 +33,7 @@ namespace Practice_Mail_Client
             InitializeComponent();
             _bll = new BLLClass();
 
-            foreach(var users in _bll.GetAllUsers())
+            foreach (var users in _bll.GetAllUsers())
             {                
                 cbAllMails.Items.Add(users.Login);
             }
@@ -166,6 +167,20 @@ namespace Practice_Mail_Client
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void CbAllMails_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            MainWindow mw = new MainWindow();
+            foreach (var users in _bll.GetAllUsers())
+            {
+                if (cbAllMails.SelectedItem != null)
+                {
+                    mw.Show();
+                    mw.loginTb.Text = cbAllMails.SelectedItem.ToString();
+                    this.Close();
+                }
+            }
         }
     }
 }
