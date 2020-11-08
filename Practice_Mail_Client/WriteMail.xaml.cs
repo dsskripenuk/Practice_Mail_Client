@@ -27,8 +27,6 @@ namespace Practice_Mail_Client
         MailClient mailClient = new MailClient("TryIt");
         MailServer server;
 
-
-
         public WriteMail(string login_, string password_, string service_)
         {
             InitializeComponent();
@@ -128,8 +126,12 @@ namespace Practice_Mail_Client
                         {
                             int index = GetSelectedIndex(listBox.SelectedItem.ToString());
 
+                            //mailClient.Move(GetMailByIndex(index), subfolder);
+
+                            indexTB.Text = index.ToString();
+
                             mailClient.Move(GetMailByIndex(Convert.ToInt32(indexTB.Text)), subfolder);
-                            MessageBox.Show("Moving to sent", "Message was moved to sent!");
+                            MessageBox.Show("Moving to trash", "Message was moved to trash!");
                             break;
                         }
                     }
@@ -156,10 +158,13 @@ namespace Practice_Mail_Client
 
         private int GetSelectedIndex(string selectedMail)
         {
+            int index = 0;
             var split = selectedMail.Split('\n', '\r');
-            int index = Convert.ToInt32(split[0]);
 
-            return index;
+            if (Int32.TryParse(split[0], out index))
+                return index;
+
+            return 0;
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
