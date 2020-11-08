@@ -38,7 +38,6 @@
                             </DockPanel>
 
                             <Button Margin="5" VerticalAlignment="Top" Click="Button_Click_6">Starred</Button>
-                            <Button Margin="5" VerticalAlignment="Top">Select</Button>
                             <Button Margin="5" VerticalAlignment="Top" Click="Button_Click_11">Move to all mail</Button>
                             <Button Margin="5" VerticalAlignment="Top" Click="Button_Click_1">Delete</Button>
                             <Button Margin="5" VerticalAlignment="Top" Click="Button_Click_2">Mark as read/unread</Button>
