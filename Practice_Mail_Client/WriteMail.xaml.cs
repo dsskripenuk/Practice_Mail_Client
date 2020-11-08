@@ -24,16 +24,16 @@ namespace Practice_Mail_Client
         string SMTPservice = null;
         private IBLLClass _bll = null;
 
+        MailServer server;
+        MailClient client = new MailClient("TryIt");
 
         public WriteMail(string login_, string password_, string service_)
         {
             InitializeComponent();
             _bll = new BLLClass();
 
-            foreach(var users in _bll.GetAllUsers())
-            {                
+            foreach (var users in _bll.GetAllUsers())
                 cbAllMails.Items.Add(users.Login);
-            }
 
             login = login_;
             password = password_;
@@ -63,13 +63,13 @@ namespace Practice_Mail_Client
         {
             try
             {
-                mailClient.Connect(server);
+                client.Connect(server);
 
-                var messages = mailClient.GetMailInfos();
+                var messages = client.GetMailInfos();
 
                 foreach (var m in messages)
                 {
-                    EAGetMail.Mail message = mailClient.GetMail(m);
+                    EAGetMail.Mail message = client.GetMail(m);
 
                     listBox.Items.Add($"{m.Index}{Environment.NewLine}\n" + $"From: {message.From}" + $"Date: {message.SentDate}");
                 }
@@ -86,13 +86,13 @@ namespace Practice_Mail_Client
 
             try
             {
-                mailClient.Connect(server);
+                client.Connect(server);
 
-                var messages = mailClient.GetMailInfos();
+                var messages = client.GetMailInfos();
 
                 foreach (var m in messages)
                 {
-                    EAGetMail.Mail message = mailClient.GetMail(m);
+                    EAGetMail.Mail message = client.GetMail(m);
 
                     if (m.Index == Convert.ToInt32(indexTB.Text))
                         mail = m;
@@ -114,29 +114,67 @@ namespace Practice_Mail_Client
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
-
             try
             {
-                client.Connect(server);
-                client.Delete(GetMailByIndex(Convert.ToInt32(indexTB.Text)));
+                foreach (var folder in client.Imap4Folders)
+                {
+                    foreach (var subfolder in folder.SubFolders)
+                    {
+                        if (subfolder.Name.Equals("Trash") || subfolder.Name.Equals("Кошик") || subfolder.Name.Equals("Корзина"))
+                        {
+                            int index = GetSelectedIndex(listBox.SelectedItem.ToString());
+
+                            //mailClient.Move(GetMailByIndex(index), subfolder);
+
+                            indexTB.Text = index.ToString();
+
+                            client.Move(GetMailByIndex(Convert.ToInt32(indexTB.Text)), subfolder);
+                            MessageBox.Show("Moving to trash", "Message was moved to trash!");
+                            break;
+                        }
+                    }
+                }
             }
-            catch (Exception ex)
-            {
-                System.Windows.MessageBox.Show(ex.Message);
-            }
+            catch (Exception)
+            { }
+
+            //try
+            //{
+            //    int index = GetSelectedIndex(listBox.SelectedItem.ToString());
+            //    MailInfo client = GetMailByIndex(index);
+
+            //    MessageBox.Show(client.ToString());
+
+            //    mailClient.Connect(server);
+            //    mailClient.Delete(client);
+            //}
+            //catch (Exception ex)
+            //{
+            //    System.Windows.MessageBox.Show(ex.Message);
+            //}
+        }
+
+        private int GetSelectedIndex(string selectedMail)
+        {
+            int index = 0;
+            var split = selectedMail.Split('\n', '\r');
+
+            if (Int32.TryParse(split[0], out index))
+                return index;
+
+            return 0;
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             try
             {
-                mailClient.Connect(server);
+                client.Connect(server);
 
                 if (GetMailByIndex(Convert.ToInt32(indexTB.Text)).Read == false)
-                    mailClient.MarkAsRead(GetMailByIndex(Convert.ToInt32(indexTB.Text)), true);
+                    client.MarkAsRead(GetMailByIndex(Convert.ToInt32(indexTB.Text)), true);
                 else
-                    mailClient.MarkAsRead(GetMailByIndex(Convert.ToInt32(indexTB.Text)), false);
+                    client.MarkAsRead(GetMailByIndex(Convert.ToInt32(indexTB.Text)), false);
             }
             catch (Exception ex)
             {
@@ -148,7 +186,7 @@ namespace Practice_Mail_Client
         {
             try
             {
-                mailClient.Connect(server);
+                client.Connect(server);
 
                 MailInfo mail = GetMailByIndex(Convert.ToInt32(indexTB.Text));
 
@@ -200,7 +238,7 @@ namespace Practice_Mail_Client
 
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
         private void Button_Click_6(object sender, RoutedEventArgs e)
@@ -211,7 +249,7 @@ namespace Practice_Mail_Client
                 {
                     foreach (var subfolder in folder.SubFolders)
                     {
-                        if (subfolder.Name.Equals("Starred") || subfolder.Name.Equals("Отмеченные") || subfolder.Name.Equals("Відміченні"))
+                        if (subfolder.Name.Equals("Starred") || subfolder.Name.Equals("Помеченные") || subfolder.Name.Equals("Відміченні"))
                         {
                             client.Move(GetMailByIndex(Convert.ToInt32(indexTB.Text)), subfolder);
                             MessageBox.Show("Moving to starred", "Message was moved to starred!");
@@ -239,11 +277,142 @@ namespace Practice_Mail_Client
                 {
                     foreach (var subfolder in folder.SubFolders)
                     {
-                        if (subfolder.Name.Equals("Scheduled") || subfolder.Name.Equals("Отложенные") || subfolder.Name.Equals("Відложенні"))
+                        if (subfolder.Name.Equals("Important") || subfolder.Name.Equals("Важное") || subfolder.Name.Equals("Важливе"))
                         {
                             client.Move(GetMailByIndex(Convert.ToInt32(indexTB.Text)), subfolder);
-                            MessageBox.Show("Moving to scheduled", "Message was moved to scheduled!");
+                            MessageBox.Show("Moving to Important", "Message was moved to important!");
                             break;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void Button_Click_9(object sender, RoutedEventArgs e)
+        {
+            listBox.Items.Clear();
+
+            try
+            {
+                foreach (var folder in client.Imap4Folders)
+                {
+                    foreach (var subfolder in folder.SubFolders)
+                    {
+                        if (subfolder.Name.Equals("Starred") || subfolder.Name.Equals("Помеченные") || subfolder.Name.Equals("Відміченні"))
+                        {
+                            var messages = client.GetMailInfos();
+
+                            foreach (var m in messages)
+                            {
+                                EAGetMail.Mail message = client.GetMail(m);
+
+                                listBox.Items.Add($"{m.Index}{Environment.NewLine}\n" + $"From: {message.From}" + $"Date: {message.SentDate}");
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            //try
+            //{
+            //    foreach (var folder in client.Imap4Folders)
+            //    {
+            //        foreach (var subfolder in folder.SubFolders)
+            //        {
+            //            MessageBox.Show(subfolder.Name);
+            //        }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
+        }
+
+        private void Button_Click_10(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_11(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                foreach (var folder in client.Imap4Folders)
+                {
+                    foreach (var subfolder in folder.SubFolders)
+                    {
+                        if (subfolder.Name.Equals("All mail") || subfolder.Name.Equals("Вся почта") || subfolder.Name.Equals("Вся пошта"))
+                        {
+                            client.Move(GetMailByIndex(Convert.ToInt32(indexTB.Text)), subfolder);
+                            MessageBox.Show("Moving to all mail", "Message was moved to all mail!");
+                            break;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void Button_Click_12(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                foreach (var folder in client.Imap4Folders)
+                {
+                    foreach (var subfolder in folder.SubFolders)
+                    {
+                        if (subfolder.Name.Equals("Spam") || subfolder.Name.Equals("Спам"))
+                        {
+                            client.Move(GetMailByIndex(Convert.ToInt32(indexTB.Text)), subfolder);
+                            MessageBox.Show("Moving to spam", "Message was moved to spam!");
+                            break;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void Button_Click_13(object sender, RoutedEventArgs e)
+        {
+            ShowMails();
+        }
+
+        private void Button_Click_14(object sender, RoutedEventArgs e)
+        {
+            listBox.Items.Clear();
+
+            try
+            {
+                foreach (var folder in client.Imap4Folders)
+                {
+                    foreach (var subfolder in folder.SubFolders)
+                    {
+                        if (subfolder.Name.Equals("Trash") || subfolder.Name.Equals("Кошик") || subfolder.Name.Equals("Корзина"))
+                        {
+                            var messages = client.GetMailInfos();
+
+                            foreach (var m in messages)
+                            {
+                                EAGetMail.Mail message = client.GetMail(m);
+
+                                listBox.Items.Add($"{m.Index}{Environment.NewLine}\n" + $"From: {message.From}" + $"Date: {message.SentDate}");
+                            }
                         }
                     }
                 }
