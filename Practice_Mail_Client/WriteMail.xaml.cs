@@ -24,16 +24,14 @@ namespace Practice_Mail_Client
         string SMTPservice = null;
         private IBLLClass _bll = null;
 
-        MailClient mailClient = new MailClient("TryIt");
-        MailServer server;
 
         public WriteMail(string login_, string password_, string service_)
         {
             InitializeComponent();
             _bll = new BLLClass();
 
-            foreach (var users in _bll.GetAllUsers())
-            {
+            foreach(var users in _bll.GetAllUsers())
+            {                
                 cbAllMails.Items.Add(users.Login);
             }
 
@@ -116,55 +114,17 @@ namespace Practice_Mail_Client
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+
+
             try
             {
-                foreach (var folder in mailClient.Imap4Folders)
-                {
-                    foreach (var subfolder in folder.SubFolders)
-                    {
-                        if (subfolder.Name.Equals("Trash") || subfolder.Name.Equals("Кошик") || subfolder.Name.Equals("Корзина"))
-                        {
-                            int index = GetSelectedIndex(listBox.SelectedItem.ToString());
-
-                            //mailClient.Move(GetMailByIndex(index), subfolder);
-
-                            indexTB.Text = index.ToString();
-
-                            mailClient.Move(GetMailByIndex(Convert.ToInt32(indexTB.Text)), subfolder);
-                            MessageBox.Show("Moving to trash", "Message was moved to trash!");
-                            break;
-                        }
-                    }
-                }
+                client.Connect(server);
+                client.Delete(GetMailByIndex(Convert.ToInt32(indexTB.Text)));
             }
-            catch (Exception)
-            { }
-
-            //try
-            //{
-            //    int index = GetSelectedIndex(listBox.SelectedItem.ToString());
-            //    MailInfo client = GetMailByIndex(index);
-
-            //    MessageBox.Show(client.ToString());
-
-            //    mailClient.Connect(server);
-            //    mailClient.Delete(client);
-            //}
-            //catch (Exception ex)
-            //{
-            //    System.Windows.MessageBox.Show(ex.Message);
-            //}
-        }
-
-        private int GetSelectedIndex(string selectedMail)
-        {
-            int index = 0;
-            var split = selectedMail.Split('\n', '\r');
-
-            if (Int32.TryParse(split[0], out index))
-                return index;
-
-            return 0;
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
@@ -203,7 +163,95 @@ namespace Practice_Mail_Client
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
+            //try
+            //{
+            //    client.Connect(server);
 
+            //    foreach (var folder in client.Imap4Folders)
+            //    {
+            //        foreach (var subfolder in folder.SubFolders)
+            //        {
+            //            if (subfolder.Name.Equals("Starred") || subfolder.Name.Equals("Отмеченные") || subfolder.Name.Equals("Відміченні"))
+            //            {
+            //                client.SelectFolder(subfolder);
+
+            //                listBox.Items.Clear();
+            //                listBox.Items.Add()
+            //            }
+            //        }
+            //    }
+            //}
+            //catch(Exception ex) { MessageBox.Show(ex.Message); }
+        }
+
+        private void CbAllMails_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            MainWindow mw = new MainWindow();
+            foreach (var users in _bll.GetAllUsers())
+            {
+                if (cbAllMails.SelectedItem != null)
+                {
+                    mw.Show();
+                    mw.loginTb.Text = cbAllMails.SelectedItem.ToString();
+                    this.Close();
+                }
+            }
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                foreach (var folder in client.Imap4Folders)
+                {
+                    foreach (var subfolder in folder.SubFolders)
+                    {
+                        if (subfolder.Name.Equals("Starred") || subfolder.Name.Equals("Отмеченные") || subfolder.Name.Equals("Відміченні"))
+                        {
+                            client.Move(GetMailByIndex(Convert.ToInt32(indexTB.Text)), subfolder);
+                            MessageBox.Show("Moving to starred", "Message was moved to starred!");
+                            break;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void Button_Click_7(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_8(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                foreach (var folder in client.Imap4Folders)
+                {
+                    foreach (var subfolder in folder.SubFolders)
+                    {
+                        if (subfolder.Name.Equals("Scheduled") || subfolder.Name.Equals("Отложенные") || subfolder.Name.Equals("Відложенні"))
+                        {
+                            client.Move(GetMailByIndex(Convert.ToInt32(indexTB.Text)), subfolder);
+                            MessageBox.Show("Moving to scheduled", "Message was moved to scheduled!");
+                            break;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
