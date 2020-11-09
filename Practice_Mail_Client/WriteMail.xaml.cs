@@ -422,5 +422,24 @@ namespace Practice_Mail_Client
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void Button_Click_15(object sender, RoutedEventArgs e)
+        {
+            for (int i = 0; i < listBox.Items.Count; i++)
+            {
+                var messages = client.GetMailInfos();
+
+                foreach (var m in messages)
+                {
+                    listBox.Items.Clear();
+                    EAGetMail.Mail message = client.GetMail(m);
+                    if(message.TextBody.Contains(Search.Text))
+                    {
+                        listBox.Items.Add($"{m.Index}{Environment.NewLine}\n" + $"From: {message.From}" + $"Date: {message.SentDate} + Message : {message.TextBody}");
+                    }
+
+                }
+            }
+        }
     }
 }
