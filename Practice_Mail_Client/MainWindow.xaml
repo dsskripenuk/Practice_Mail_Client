@@ -14,13 +14,13 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}">
-    <Grid>
+    <Grid Name="grid">
         <DockPanel>
             <GroupBox>
                 <DockPanel LastChildFill="False">
                     <DockPanel DockPanel.Dock="Top" Margin="5">
                         <Label>Login:</Label>
-                        <TextBox Width="300" Name="loginTb" HorizontalAlignment="Right"></TextBox>
+                        <TextBox Width="300" Name="loginTb" HorizontalAlignment="Right" TextChanged="LoginTb_TextChanged"></TextBox>
                     </DockPanel>
 
                     <DockPanel DockPanel.Dock="Top" Margin="5">
@@ -39,6 +39,9 @@
                             <ComboBoxItem>
                                 Yandex
                             </ComboBoxItem>
+                        </ComboBox>
+                        <ComboBox Name="listBox" IsEditable="true" SelectionChanged="ListBox_SelectionChanged">
+                            
                         </ComboBox>
                     </DockPanel>
 

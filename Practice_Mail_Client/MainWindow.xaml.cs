@@ -2,6 +2,10 @@
 using System.Windows;
 using System.Diagnostics;
 using Business_Logic_Layer;
+using System.Windows.Data;
+using System.Windows.Controls;
+using System.Text.RegularExpressions;
+using System;
 
 namespace Practice_Mail_Client
 {
@@ -16,6 +20,8 @@ namespace Practice_Mail_Client
             InitializeComponent();
 
             _bll = new BLLClass();
+
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -80,6 +86,37 @@ namespace Practice_Mail_Client
                 service = "smtp.yandex.ru";
             else
                 service = "smtp.gmail.com";
+        }
+
+        private void LoginTb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            listBox.Items.Clear();
+            try
+            {
+                if (loginTb.Text != "")
+                {
+                    foreach (var users in _bll.GetAllUsers())
+                    {
+                        for (int i = 0; i < users.Login.Length; i++)
+                        {
+                            if (loginTb.Text[0] == users.Login[0])
+                            {
+                                listBox.Items.Add(users.Login);
+                                break;
+                            }
+                        }
+                    }
+                }
+            } catch(Exception ex) { MessageBox.Show(ex.Message); }
+
+        }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (listBox.SelectedItem != null)
+            {
+                loginTb.Text = listBox.SelectedItem.ToString();
+            }
         }
     }
 }
