@@ -14,22 +14,22 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}">
-    <Grid>
+    <Grid Name="grid">
         <DockPanel>
             <GroupBox>
                 <DockPanel LastChildFill="False">
                     <DockPanel DockPanel.Dock="Top" Margin="5">
                         <Label>Login:</Label>
-                        <TextBox Width="300" Name="loginTb" HorizontalAlignment="Right"></TextBox>
+                        <TextBox Width="300" Name="loginTb" ToolTip="Enter login" HorizontalAlignment="Right" TextChanged="LoginTb_TextChanged"></TextBox>
                     </DockPanel>
 
                     <DockPanel DockPanel.Dock="Top" Margin="5">
                         <Label>Password:</Label>
-                        <PasswordBox  Width="300" Name="passwordPB" HorizontalAlignment="Right"></PasswordBox>
+                        <PasswordBox  Width="300" ToolTip="Enter password" Name="passwordPB" HorizontalAlignment="Right"></PasswordBox>
                     </DockPanel>
 
                     <DockPanel DockPanel.Dock="Top" Margin="5">
-                        <ComboBox Name="serviceCB" Margin="5" SelectionChanged="ComboBox_SelectionChanged">
+                        <ComboBox Name="serviceCB" ToolTip="Choose service" Margin="5" SelectionChanged="ComboBox_SelectionChanged">
                             <ComboBoxItem>
                                 gmail
                             </ComboBoxItem>
@@ -39,6 +39,8 @@
                             <ComboBoxItem>
                                 Yandex
                             </ComboBoxItem>
+                        </ComboBox>
+                        <ComboBox Name="listBox" ToolTip="ComboBox with mails" IsEditable="true" SelectionChanged="ListBox_SelectionChanged">
                         </ComboBox>
                     </DockPanel>
 
