@@ -373,14 +373,18 @@ namespace Practice_Mail_Client
         {
             for (int i = 0; i < listBox.Items.Count; i++)
             {
+                client.Connect(server);
+
                 var messages = client.GetMailInfos();
 
                 foreach (var m in messages)
                 {
-                    listBox.Items.Clear();
                     EAGetMail.Mail message = client.GetMail(m);
-                    if (message.TextBody.Contains(Search.Text))
-                        listBox.Items.Add($"{m.Index}{Environment.NewLine}\n" + $"From: {message.From}" + $"Date: {message.SentDate} + Message : {message.TextBody}");
+                    if (message.TextBody.Contains(tbSearch.Text))
+                    {
+                        listBox.Items.Clear();
+                        listBox.Items.Add($"{m.Index}{Environment.NewLine}\n" + $"From: {message.From}" + $"Date: {message.SentDate}");
+                    }
                 }
             }
         }
@@ -388,6 +392,14 @@ namespace Practice_Mail_Client
         private void Button_Click_16(object sender, RoutedEventArgs e)
         {
             ShowMailByFolder("Spam", "Спам", "Спам");
+        }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(listBox.SelectedItem != null)
+            {
+                indexTB.Text = Convert.ToString(GetSelectedIndex(listBox.SelectedItem.ToString()));
+            }
         }
     }
 }

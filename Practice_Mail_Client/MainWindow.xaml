@@ -21,6 +21,7 @@
                     <DockPanel DockPanel.Dock="Top" Margin="5">
                         <Label>Login:</Label>
                         <TextBox Width="300" Name="loginTb" ToolTip="Enter login" HorizontalAlignment="Right" TextChanged="LoginTb_TextChanged"></TextBox>
+                        <ComboBox Name="listBox" ToolTip="ComboBox with mails" IsEditable="true" SelectionChanged="ListBox_SelectionChanged"></ComboBox>
                     </DockPanel>
 
                     <DockPanel DockPanel.Dock="Top" Margin="5">
@@ -39,8 +40,6 @@
                             <ComboBoxItem>
                                 Yandex
                             </ComboBoxItem>
-                        </ComboBox>
-                        <ComboBox Name="listBox" ToolTip="ComboBox with mails" IsEditable="true" SelectionChanged="ListBox_SelectionChanged">
                         </ComboBox>
                     </DockPanel>
 
