@@ -202,25 +202,7 @@ namespace Practice_Mail_Client
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            //try
-            //{
-            //    client.Connect(server);
-
-            //    foreach (var folder in client.Imap4Folders)
-            //    {
-            //        foreach (var subfolder in folder.SubFolders)
-            //        {
-            //            if (subfolder.Name.Equals("Starred") || subfolder.Name.Equals("Отмеченные") || subfolder.Name.Equals("Відміченні"))
-            //            {
-            //                client.SelectFolder(subfolder);
-
-            //                listBox.Items.Clear();
-            //                listBox.Items.Add()
-            //            }
-            //        }
-            //    }
-            //}
-            //catch(Exception ex) { MessageBox.Show(ex.Message); }
+            ShowMailByFolder("Inbox", "Входные", "Вхідні");
         }
 
         private void CbAllMails_SelectionChanged(object sender, SelectionChangedEventArgs e)
