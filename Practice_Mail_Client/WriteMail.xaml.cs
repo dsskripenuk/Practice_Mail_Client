@@ -202,7 +202,7 @@ namespace Practice_Mail_Client
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            ShowMailByFolder("Inbox", "Входные", "Вхідні");
+            ShowMailByFolder("Inbox", "Входящие", "Вхідні");
         }
 
         private void CbAllMails_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -371,20 +371,17 @@ namespace Practice_Mail_Client
 
         private void Button_Click_15(object sender, RoutedEventArgs e)
         {
-            for (int i = 0; i < listBox.Items.Count; i++)
+            client.Connect(server);
+
+            var messages = client.GetMailInfos();
+
+            listBox.Items.Clear();
+            foreach (var m in messages)
             {
-                client.Connect(server);
-
-                var messages = client.GetMailInfos();
-
-                foreach (var m in messages)
+                EAGetMail.Mail message = client.GetMail(m);
+                if (message.TextBody.Contains(tbSearch.Text))
                 {
-                    EAGetMail.Mail message = client.GetMail(m);
-                    if (message.TextBody.Contains(tbSearch.Text))
-                    {
-                        listBox.Items.Clear();
-                        listBox.Items.Add($"{m.Index}{Environment.NewLine}\n" + $"From: {message.From}" + $"Date: {message.SentDate}");
-                    }
+                    listBox.Items.Add($"{m.Index}{Environment.NewLine}\n" + $"From: {message.From}" + $"Date: {message.SentDate}");
                 }
             }
         }
