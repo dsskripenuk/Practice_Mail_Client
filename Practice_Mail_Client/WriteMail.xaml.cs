@@ -239,7 +239,7 @@ namespace Practice_Mail_Client
 
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
-
+            ShowMailByFolder("Sent", "Отправленные", "Надіслані");
         }
 
         private void Button_Click_6(object sender, RoutedEventArgs e)
@@ -267,7 +267,7 @@ namespace Practice_Mail_Client
 
         private void Button_Click_7(object sender, RoutedEventArgs e)
         {
-
+            ShowMailByFolder("Drafts", "Черновики", "Чорновики");
         }
 
         private void Button_Click_8(object sender, RoutedEventArgs e)
@@ -293,136 +293,42 @@ namespace Practice_Mail_Client
             }
         }
 
-        private void Button_Click_9(object sender, RoutedEventArgs e)
+        private void ShowMailByFolder(string english, string rus, string ua)
         {
             listBox.Items.Clear();
 
-            //try
-            //{
-            //    client.Connect(server);
-
-            //    var messages = client.GetMailInfos();
-
-            //    foreach (var m in messages)
-            //    {
-            //        client.SelectFolder
-            //        if (m.UIDL.Equals("Starred") || m.UIDL.Equals("Помеченные") || m.UIDL.Equals("Відміченні"))
-            //            MessageBox.Show($"{m.Index}{Environment.NewLine}\n" + $"From: {client.GetMail(m).From}" + $"Date: {client.GetMail(m).SentDate}");
-
-            //        //listBox.Items.Add($"{m.Index}{Environment.NewLine}\n" + $"From: {client.GetMail(m).From}" + $"Date: {client.GetMail(m).SentDate}");
-
-            //        //EAGetMail.Mail message = client.GetMail(m);
-
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    System.Windows.MessageBox.Show(ex.Message);
-            //}
-
-
-            //try
-            //{
-            //    for (int i = 0; i < client.Imap4Folders.Length; i++)
-            //    {
-            //        for (int j = 0; j < client.Imap4Folders[i].SubFolders.Length; j++)
-            //        {
-            //            if (client.Imap4Folders[j].Name.Equals("Starred") || client.Imap4Folders[j].Name.Equals("Помеченные") || client.Imap4Folders[j].Name.Equals("Відміченні"))
-            //            {
-            //                var messages = client.GetMailInfos();
-
-            //                for (int k = 0; k < messages.Length; k++)
-            //                {
-            //                    if (messages[k].UIDL)
-            //                }
-
-
-
-            //                foreach (var m in messages)
-            //                {
-            //                    //if(m.Index == j)
-
-
-            //                        EAGetMail.Mail message = client.GetMail(m);
-
-
-            //                    //m.UIDL.Equals
-
-
-            //                    MessageBox.Show(m.UIDL);
-            //                    //MessageBox.Show($"{m.Index}{Environment.NewLine}\n" + $"From: {message.From}" + $"Date: {message.SentDate}");
-
-            //                    //listBox.Items.Add($"{m.Index}{Environment.NewLine}\n" + $"From: {message.From}" + $"Date: {message.SentDate}");
-            //                }
-            //            }
-            //        }
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
-
-
-            for (int i = 0; i < client.Imap4Folders.Length; i++)
+            try
             {
-                for (int j = 0; j < client.Imap4Folders[i].SubFolders.Length; j++)
+                foreach (var folder in client.Imap4Folders)
                 {
-                    if (client.Imap4Folders[j].Name.Equals("Starred") || client.Imap4Folders[j].Name.Equals("Помеченные") || client.Imap4Folders[j].Name.Equals("Відміченні"))
+                    foreach (var subfolder in folder.SubFolders)
                     {
-                        client.SelectFolder(new Imap4Folder(client.Imap4Folders[j].Name));
-                        var messages = client.GetMailInfos();
-
-                        foreach (var m in messages)
+                        if (subfolder.Name.Equals(english) || subfolder.Name.Equals(rus) || subfolder.Name.Equals(ua))
                         {
-                            EAGetMail.Mail message = client.GetMail(m);
+                            client.SelectFolder(subfolder);
 
-                            MessageBox.Show($"{m.Index}\n" + $"From: {message.From}" + $"Date: {message.SentDate}");
+                            var messages = client.GetMailInfos();
 
-                            //listBox.Items.Add($"{m.Index}{Environment.NewLine}\n" + $"From: {message.From}" + $"Date: {message.SentDate}");
+                            foreach (var m in messages)
+                                listBox.Items.Add($"{m.Index}{Environment.NewLine}\n" + $"From: {client.GetMail(m).From}" + $"Date: {client.GetMail(m).SentDate}");
                         }
-
-                        //foreach (var m in messages)
-                        //{
-                        //    //if(m.Index == j)
-
-
-                        //    EAGetMail.Mail message = client.GetMail(m);
-
-
-                        //    //m.UIDL.Equals
-
-
-                        //    MessageBox.Show(m.UIDL);
-                        //    //MessageBox.Show($"{m.Index}{Environment.NewLine}\n" + $"From: {message.From}" + $"Date: {message.SentDate}");
-
-                        //    //listBox.Items.Add($"{m.Index}{Environment.NewLine}\n" + $"From: {message.From}" + $"Date: {message.SentDate}");
-                        //}
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
-            
-
-            //try
-            //{
-            //    foreach (var folder in client.Imap4Folders)
-            //    {
-            //        foreach (var subfolder in folder.SubFolders)
-            //        {
-            //            MessageBox.Show(subfolder.Name);
-            //        }
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
+        private void Button_Click_9(object sender, RoutedEventArgs e)
+        {
+            ShowMailByFolder("Starred", "Помеченные", "Відміченні");
         }
 
         private void Button_Click_10(object sender, RoutedEventArgs e)
         {
-
+            ShowMailByFolder("Important", "Важное", "Важливе");
         }
 
         private void Button_Click_11(object sender, RoutedEventArgs e)
@@ -478,32 +384,7 @@ namespace Practice_Mail_Client
 
         private void Button_Click_14(object sender, RoutedEventArgs e)
         {
-            listBox.Items.Clear();
-
-            try
-            {
-                foreach (var folder in client.Imap4Folders)
-                {
-                    foreach (var subfolder in folder.SubFolders)
-                    {
-                        if (subfolder.Name.Equals("Trash") || subfolder.Name.Equals("Кошик") || subfolder.Name.Equals("Корзина"))
-                        {
-                            var messages = client.GetMailInfos();
-
-                            foreach (var m in messages)
-                            {
-                                EAGetMail.Mail message = client.GetMail(m);
-
-                                listBox.Items.Add($"{m.Index}{Environment.NewLine}\n" + $"From: {message.From}" + $"Date: {message.SentDate}");
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            ShowMailByFolder("Trash", "Корзина", "Кошик");
         }
 
         private void Button_Click_15(object sender, RoutedEventArgs e)
@@ -516,13 +397,15 @@ namespace Practice_Mail_Client
                 {
                     listBox.Items.Clear();
                     EAGetMail.Mail message = client.GetMail(m);
-                    if(message.TextBody.Contains(Search.Text))
-                    {
+                    if (message.TextBody.Contains(Search.Text))
                         listBox.Items.Add($"{m.Index}{Environment.NewLine}\n" + $"From: {message.From}" + $"Date: {message.SentDate} + Message : {message.TextBody}");
-                    }
-
                 }
             }
+        }
+
+        private void Button_Click_16(object sender, RoutedEventArgs e)
+        {
+            ShowMailByFolder("Spam", "Спам", "Спам");
         }
     }
 }

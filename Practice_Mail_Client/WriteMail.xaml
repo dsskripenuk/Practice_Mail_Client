@@ -31,7 +31,7 @@
                             <Button Margin="5" VerticalAlignment="Top" Background="#FFB6B6B8" Foreground="#DD000000" Click="Button_Click_5">Sent</Button>
                             <Button Margin="5" VerticalAlignment="Top" Background="#FFB6B6B8" Foreground="#DD000000" Click="Button_Click_7">Drafts</Button>
                             <Button Margin="5" VerticalAlignment="Top" Background="#FFB6B6B8" Foreground="#DD000000" Click="Button_Click_14" >Trash</Button>
-                            <Button Margin="5" VerticalAlignment="Top" Background="#FFB6B6B8" Foreground="#DD000000" >Spam</Button>
+                            <Button Margin="5" VerticalAlignment="Top" Background="#FFB6B6B8" Foreground="#DD000000" Click="Button_Click_16" >Spam</Button>
 
                             <DockPanel Margin="5, 20, 5, 5">
                                 <Label Margin="5">Index:</Label>
