@@ -202,7 +202,7 @@ namespace Practice_Mail_Client
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            ShowMailByFolder("Inbox", "Входные", "Вхідні");
+            ShowMails();
         }
 
         private void CbAllMails_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -361,7 +361,7 @@ namespace Practice_Mail_Client
 
         private void Button_Click_13(object sender, RoutedEventArgs e)
         {
-            ShowMails();
+            ShowMailByFolder("All mail", "Вся почта", "Вся пошта");
         }
 
         private void Button_Click_14(object sender, RoutedEventArgs e)
