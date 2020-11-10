@@ -24,7 +24,6 @@
                     <DockPanel DockPanel.Dock="Top" Margin="5" Height="838">
                         <StackPanel DockPanel.Dock="Top" Margin="5" Height="820" Width="250" HorizontalAlignment="Left">
                             <Button Margin="5, 5, 5, 20" VerticalAlignment="Top" Click="Button_Click">Compose</Button>
-                            <Button Margin="5" VerticalAlignment="Top" Background="#FFB6B6B8" Foreground="#DD000000" Click="Button_Click_4">Inbox</Button>
                             <Button Margin="5" VerticalAlignment="Top" Background="#FFB6B6B8" Foreground="#DD000000" Click="Button_Click_9" >Starred</Button>
                             <Button Margin="5" VerticalAlignment="Top" Background="#FFB6B6B8" Foreground="#DD000000" Click="Button_Click_10">Important</Button>
                             <Button Margin="5" VerticalAlignment="Top" Background="#FFB6B6B8" Foreground="#DD000000" Click="Button_Click_13">All Mail</Button>

@@ -62,6 +62,7 @@ namespace Practice_Mail_Client
 
         private void ShowMails()
         {
+            listBox.Items.Clear();
             try
             {
                 client.Connect(server);
@@ -202,7 +203,7 @@ namespace Practice_Mail_Client
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            ShowMailByFolder("Inbox", "Входные", "Вхідні");
+            ShowMailByFolder("Sent", "Отправленные", "Надіслані");
         }
 
         private void CbAllMails_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -217,11 +218,6 @@ namespace Practice_Mail_Client
                     this.Close();
                 }
             }
-        }
-
-        private void Button_Click_5(object sender, RoutedEventArgs e)
-        {
-            ShowMailByFolder("Sent", "Отправленные", "Надіслані");
         }
 
         private void Button_Click_6(object sender, RoutedEventArgs e)
