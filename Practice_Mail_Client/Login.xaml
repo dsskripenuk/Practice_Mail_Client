@@ -45,7 +45,8 @@
 
                     <DockPanel DockPanel.Dock="Top" Margin="5">
                         <Button Margin="5" x:Name="sendBTN" Width="103" HorizontalAlignment="Right" Click="openFileBtn_Click" Content="Send"/>
-                    </DockPanel>
+                        <Button Margin="5" Width="120" HorizontalAlignment="Right" Click="Button_Click_1">Add to drafts</Button>
+                    </DockPanel> 
                 </DockPanel>
             </GroupBox>
         </DockPanel>

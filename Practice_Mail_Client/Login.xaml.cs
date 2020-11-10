@@ -99,5 +99,37 @@ namespace Practice_Mail_Client
         {
             messageTb.FontWeight = FontWeights.Bold;
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            WriteMail wm = new WriteMail();
+            try
+            {
+                foreach (var folder in client.Imap4Folders)
+                {
+                    foreach (var subfolder in folder.SubFolders)
+                    {
+                        if (subfolder.Name.Equals("Drafts") || subfolder.Name.Equals("Черновики") || subfolder.Name.Equals("Чернетки"))
+                        {
+                            var messages = client.GetMailInfos();
+
+                            foreach (var m in messages)
+                            {
+                                EAGetMail.Mail message = client.GetMail(m);
+
+                                
+                                System.Windows.MessageBox.Show("Moving to drafts", "Message was moved to drafts!");
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
+        }
+
     }
 }

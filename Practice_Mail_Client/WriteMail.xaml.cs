@@ -60,6 +60,10 @@ namespace Practice_Mail_Client
             ShowMails();
         }
 
+        public WriteMail()
+        {
+        }
+
         private void ShowMails()
         {
             listBox.Items.Clear();
@@ -95,6 +99,7 @@ namespace Practice_Mail_Client
                 foreach (var m in messages)
                 {
                     EAGetMail.Mail message = client.GetMail(m);
+                  
 
                     if (m.Index == Convert.ToInt32(indexTB.Text))
                         mail = m;
