@@ -60,10 +60,6 @@ namespace Practice_Mail_Client
             ShowMails();
         }
 
-        public WriteMail()
-        {
-        }
-
         private void ShowMails()
         {
             listBox.Items.Clear();
@@ -99,7 +95,6 @@ namespace Practice_Mail_Client
                 foreach (var m in messages)
                 {
                     EAGetMail.Mail message = client.GetMail(m);
-                  
 
                     if (m.Index == Convert.ToInt32(indexTB.Text))
                         mail = m;
@@ -376,7 +371,7 @@ namespace Practice_Mail_Client
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(listBox.SelectedItem != null)
+            if (listBox.SelectedItem != null)
             {
                 indexTB.Text = Convert.ToString(GetSelectedIndex(listBox.SelectedItem.ToString()));
             }
@@ -385,6 +380,13 @@ namespace Practice_Mail_Client
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
             ShowMailByFolder("Sent", "Отправленные", "Надісланні");
+        }
+
+        private void Button_Click_17(object sender, RoutedEventArgs e)
+        {
+            listBox.Items.SortDescriptions.Add(
+            new System.ComponentModel.SortDescription("",
+            System.ComponentModel.ListSortDirection.Ascending));
         }
     }
 }

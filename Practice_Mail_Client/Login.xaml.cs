@@ -102,7 +102,7 @@ namespace Practice_Mail_Client
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            WriteMail wm = new WriteMail();
+            WriteMail wm = new WriteMail(login, password, service);
             try
             {
                 foreach (var folder in client.Imap4Folders)
