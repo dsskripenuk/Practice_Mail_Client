@@ -411,7 +411,7 @@ namespace Practice_Mail_Client
             af.Show();
             this.Close();
         }
-        //a
+
         private void Button_Click_18(object sender, RoutedEventArgs e)
         {
             DeleteFolder df = new DeleteFolder(login, password, service);
