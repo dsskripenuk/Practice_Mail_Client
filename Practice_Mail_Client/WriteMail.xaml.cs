@@ -60,10 +60,6 @@ namespace Practice_Mail_Client
             ShowMails();
         }
 
-        public WriteMail()
-        {
-        }
-
         private void ShowMails()
         {
             listBox.Items.Clear();
@@ -99,7 +95,6 @@ namespace Practice_Mail_Client
                 foreach (var m in messages)
                 {
                     EAGetMail.Mail message = client.GetMail(m);
-                  
 
                     if (m.Index == Convert.ToInt32(indexTB.Text))
                         mail = m;
@@ -130,9 +125,6 @@ namespace Practice_Mail_Client
                         if (subfolder.Name.Equals("Trash") || subfolder.Name.Equals("Кошик") || subfolder.Name.Equals("Корзина"))
                         {
                             int index = GetSelectedIndex(listBox.SelectedItem.ToString());
-
-                            //mailClient.Move(GetMailByIndex(index), subfolder);
-
                             indexTB.Text = index.ToString();
 
                             client.Move(GetMailByIndex(Convert.ToInt32(indexTB.Text)), subfolder);
@@ -144,21 +136,6 @@ namespace Practice_Mail_Client
             }
             catch (Exception)
             { }
-
-            //try
-            //{
-            //    int index = GetSelectedIndex(listBox.SelectedItem.ToString());
-            //    MailInfo client = GetMailByIndex(index);
-
-            //    MessageBox.Show(client.ToString());
-
-            //    mailClient.Connect(server);
-            //    mailClient.Delete(client);
-            //}
-            //catch (Exception ex)
-            //{
-            //    System.Windows.MessageBox.Show(ex.Message);
-            //}
         }
 
         private int GetSelectedIndex(string selectedMail)
@@ -394,7 +371,7 @@ namespace Practice_Mail_Client
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(listBox.SelectedItem != null)
+            if (listBox.SelectedItem != null)
             {
                 indexTB.Text = Convert.ToString(GetSelectedIndex(listBox.SelectedItem.ToString()));
             }
@@ -403,20 +380,6 @@ namespace Practice_Mail_Client
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
             ShowMailByFolder("Sent", "Отправленные", "Надісланні");
-        }
-
-        private void Button_Click_17(object sender, RoutedEventArgs e)
-        {
-            AddFolder af = new AddFolder(login, password, service);
-            af.Show();
-            this.Close();
-        }
-
-        private void Button_Click_18(object sender, RoutedEventArgs e)
-        {
-            DeleteFolder df = new DeleteFolder(login, password, service);
-            df.Show();
-            this.Close();
         }
     }
 }
