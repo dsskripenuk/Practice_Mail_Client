@@ -6,6 +6,8 @@ using System.Windows.Data;
 using System.Windows.Controls;
 using System.Text.RegularExpressions;
 using System;
+using System.ComponentModel;
+using System.Collections.Generic;
 
 namespace Practice_Mail_Client
 {
@@ -20,8 +22,6 @@ namespace Practice_Mail_Client
             InitializeComponent();
 
             _bll = new BLLClass();
-
-            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -88,6 +88,7 @@ namespace Practice_Mail_Client
                 service = "smtp.gmail.com";
         }
 
+        List<string> mails = new List<string>();
         private void LoginTb_TextChanged(object sender, TextChangedEventArgs e)
         {
             listBox.Items.Clear();
@@ -101,6 +102,7 @@ namespace Practice_Mail_Client
                         {
                             if (loginTb.Text[0] == users.Login[0])
                             {
+                                mails.Add(users.Login);
                                 listBox.Items.Add(users.Login);
                                 break;
                             }

@@ -399,5 +399,10 @@ namespace Practice_Mail_Client
                 indexTB.Text = Convert.ToString(GetSelectedIndex(listBox.SelectedItem.ToString()));
             }
         }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            ShowMailByFolder("Sent", "Отправленные", "Надісланні");
+        }
     }
 }
