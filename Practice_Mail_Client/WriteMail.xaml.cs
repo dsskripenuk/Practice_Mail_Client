@@ -130,9 +130,6 @@ namespace Practice_Mail_Client
                         if (subfolder.Name.Equals("Trash") || subfolder.Name.Equals("Кошик") || subfolder.Name.Equals("Корзина"))
                         {
                             int index = GetSelectedIndex(listBox.SelectedItem.ToString());
-
-                            //mailClient.Move(GetMailByIndex(index), subfolder);
-
                             indexTB.Text = index.ToString();
 
                             client.Move(GetMailByIndex(Convert.ToInt32(indexTB.Text)), subfolder);
@@ -144,21 +141,6 @@ namespace Practice_Mail_Client
             }
             catch (Exception)
             { }
-
-            //try
-            //{
-            //    int index = GetSelectedIndex(listBox.SelectedItem.ToString());
-            //    MailInfo client = GetMailByIndex(index);
-
-            //    MessageBox.Show(client.ToString());
-
-            //    mailClient.Connect(server);
-            //    mailClient.Delete(client);
-            //}
-            //catch (Exception ex)
-            //{
-            //    System.Windows.MessageBox.Show(ex.Message);
-            //}
         }
 
         private int GetSelectedIndex(string selectedMail)
