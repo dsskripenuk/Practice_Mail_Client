@@ -373,7 +373,7 @@ namespace Practice_Mail_Client
         private void Button_Click_15(object sender, RoutedEventArgs e)
         {
             client.Connect(server);
-
+            
             var messages = client.GetMailInfos();
 
             listBox.Items.Clear();
@@ -403,6 +403,20 @@ namespace Practice_Mail_Client
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
             ShowMailByFolder("Sent", "Отправленные", "Надісланні");
+        }
+
+        private void Button_Click_17(object sender, RoutedEventArgs e)
+        {
+            AddFolder af = new AddFolder(login, password, service);
+            af.Show();
+            this.Close();
+        }
+
+        private void Button_Click_18(object sender, RoutedEventArgs e)
+        {
+            DeleteFolder df = new DeleteFolder(login, password, service);
+            df.Show();
+            this.Close();
         }
     }
 }

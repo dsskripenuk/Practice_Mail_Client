@@ -88,10 +88,10 @@ namespace Practice_Mail_Client
                 service = "smtp.gmail.com";
         }
 
-        List<string> mails = new List<string>();
         private void LoginTb_TextChanged(object sender, TextChangedEventArgs e)
         {
             listBox.Items.Clear();
+
             try
             {
                 if (loginTb.Text != "")
@@ -102,7 +102,6 @@ namespace Practice_Mail_Client
                         {
                             if (loginTb.Text[0] == users.Login[0])
                             {
-                                mails.Add(users.Login);
                                 listBox.Items.Add(users.Login);
                                 break;
                             }

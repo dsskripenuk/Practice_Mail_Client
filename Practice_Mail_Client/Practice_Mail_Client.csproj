@@ -90,6 +90,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddFolder.xaml.cs">
+      <DependentUpon>AddFolder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteFolder.xaml.cs">
+      <DependentUpon>DeleteFolder.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Info.xaml.cs">
       <DependentUpon>Info.xaml</DependentUpon>
     </Compile>
@@ -99,6 +105,14 @@
     <Compile Include="WriteMail.xaml.cs">
       <DependentUpon>WriteMail.xaml</DependentUpon>
     </Compile>
+    <Page Include="AddFolder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DeleteFolder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Info.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
