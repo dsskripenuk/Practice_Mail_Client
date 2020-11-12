@@ -381,5 +381,27 @@ namespace Practice_Mail_Client
         {
             ShowMailByFolder("Sent", "Отправленные", "Надісланні");
         }
+
+        private void Button_Click_17(object sender, RoutedEventArgs e)
+        {
+
+            AddFolder af = new AddFolder(login, password, service);
+            af.Show();
+            this.Close();
+        }
+
+        private void Button_Click_18(object sender, RoutedEventArgs e)
+        {
+            DeleteFolder df = new DeleteFolder(login, password, service);
+            df.Show();
+            this.Close();
+        }
+
+        private void Button_Click_19(object sender, RoutedEventArgs e)
+        {
+            listBox.Items.SortDescriptions.Add(
+            new System.ComponentModel.SortDescription("",
+            System.ComponentModel.ListSortDirection.Ascending));
+        }
     }
 }

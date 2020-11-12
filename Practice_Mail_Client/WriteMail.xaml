@@ -17,7 +17,7 @@
                 <DockPanel LastChildFill="False">
                     <DockPanel DockPanel.Dock="Top" Margin="5" Height="35">
                         <Button Margin="5,0,5,5" Height="25" Click="Button_Click_15" VerticalAlignment="Bottom" Width="100">Search</Button>
-                        <Button Margin="5" Height="25" VerticalAlignment="Bottom" Click="Button_Click_17" Width="100">Sort</Button>
+                        <Button Margin="5" Height="25" VerticalAlignment="Bottom" Width="100" Click="Button_Click_19">Sort</Button>
                         <TextBox Margin="5" Name="tbSearch" Width="899"></TextBox>
                         <ComboBox Name="cbAllMails" Margin="5" Width="129" HorizontalAlignment="Right" SelectionChanged="CbAllMails_SelectionChanged"></ComboBox>
                     </DockPanel>
